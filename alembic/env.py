@@ -9,6 +9,9 @@ from app.database.database import Base
 
 # Import models so Alembic can discover them
 from app.models.user import User
+from app.models.customer import Customer
+from app.models.vehicle import Vehicle
+from app.models.repair_job import RepairJob
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

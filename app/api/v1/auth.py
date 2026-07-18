@@ -1,12 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
+from app.auth.current_user import get_current_user
 from app.database.dependencies import get_db
+from app.models.user import User
 from app.repositories.user_repository import UserRepository
-from app.schemas.user import LoginRequest, Token, UserCreate, UserResponse
+from app.schemas.user import Token, UserCreate, UserResponse
 from app.services.auth_service import AuthService
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
+router = APIRouter(
+    prefix="/auth",
+    tags=["Authentication"],
+)
 
 
 @router.post(
@@ -24,8 +30,7 @@ def register(
     service = AuthService(repository)
 
     try:
-        created_user = service.register(user)
-        return created_user
+        return service.register(user)
 
     except ValueError as exc:
         raise HTTPException(
@@ -39,7 +44,7 @@ def register(
     response_model=Token,
 )
 def login(
-    credentials: LoginRequest,
+    form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db),
 ) -> Token:
     """Authenticate a user and return an access token."""
@@ -48,10 +53,25 @@ def login(
     service = AuthService(repository)
 
     try:
-        return service.login(credentials)
+        return service.login(
+            email=form_data.username,
+            password=form_data.password,
+        )
 
     except ValueError as exc:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=str(exc),
         )
+
+
+@router.get(
+    "/me",
+    response_model=UserResponse,
+)
+def me(
+    current_user: User = Depends(get_current_user),
+) -> UserResponse:
+    """Return the currently authenticated user."""
+
+    return current_user

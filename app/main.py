@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 
 from app.api.v1.auth import router as auth_router
+from app.api.v1.customers import router as customer_router
+from app.api.v1.vehicles import router as vehicle_router
+from app.api.v1.repair_jobs import router as repair_job_router
 from app.core.config import settings
 
 app = FastAPI(
@@ -9,6 +12,9 @@ app = FastAPI(
 )
 
 app.include_router(auth_router)
+app.include_router(customer_router)
+app.include_router(vehicle_router)
+app.include_router(repair_job_router)
 
 
 @app.get("/")
