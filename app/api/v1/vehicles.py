@@ -16,7 +16,7 @@ from app.schemas.vehicle import (
 from app.services.vehicle_service import VehicleService
 
 router = APIRouter(
-    prefix="/vehicles",
+    prefix="/api/vehicles",
     tags=["Vehicles"],
 )
 

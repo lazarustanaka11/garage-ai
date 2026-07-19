@@ -16,7 +16,7 @@ from app.schemas.repair_job import (
 from app.services.repair_job_service import RepairJobService
 
 router = APIRouter(
-    prefix="/repair-jobs",
+    prefix="/api/repair-jobs",
     tags=["Repair Jobs"],
 )
 

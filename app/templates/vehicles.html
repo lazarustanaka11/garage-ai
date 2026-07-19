@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>Vehicles</h1>
+
+    <button
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#vehicleModal">
+
+        + Add Vehicle
+
+    </button>
+
+</div>
+
+<table class="table table-striped table-hover">
+
+    <thead>
+
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>License Plate</th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+    <tbody id="vehicleTable"></tbody>
+
+</table>
+
+
+<div class="modal fade" id="vehicleModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5>Add Vehicle</h5>
+
+            </div>
+
+            <div class="modal-body">
+
+                <label class="form-label">Customer</label>
+
+                <select
+                    id="customer_id"
+                    class="form-select mb-3">
+
+                </select>
+
+                <input id="make" class="form-control mb-2" placeholder="Make">
+
+                <input id="model" class="form-control mb-2" placeholder="Model">
+
+                <input id="year" class="form-control mb-2" placeholder="Year">
+
+                <input id="vin" class="form-control mb-2" placeholder="VIN">
+
+                <input id="license_plate" class="form-control mb-2" placeholder="License Plate">
+
+                <input id="mileage" class="form-control mb-2" placeholder="Mileage">
+
+                <input id="color" class="form-control" placeholder="Color">
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="saveVehicle"
+                    class="btn btn-success">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', path='js/vehicles.js') }}"></script>
+
+{% endblock %}

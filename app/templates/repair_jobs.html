@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>Repair Jobs</h1>
+
+    <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#repairJobModal">
+
+        + New Repair Job
+
+    </button>
+
+</div>
+
+<table class="table table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>Vehicle</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Mileage</th>
+            <th>AI</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody id="repairJobTable"></tbody>
+
+</table>
+
+
+<!-- Create Repair Job Modal -->
+
+<div class="modal fade" id="repairJobModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5>Create Repair Job</h5>
+
+            </div>
+
+            <div class="modal-body">
+
+                <label class="form-label">
+
+                    Vehicle
+
+                </label>
+
+                <select
+                    id="vehicle_id"
+                    class="form-select mb-3">
+
+                </select>
+
+                <input
+                    id="title"
+                    class="form-control mb-3"
+                    placeholder="Title">
+
+                <textarea
+                    id="description"
+                    class="form-control mb-3"
+                    placeholder="Description"></textarea>
+
+                <input
+                    id="mileage"
+                    class="form-control"
+                    placeholder="Mileage">
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="saveRepairJob"
+                    class="btn btn-primary">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- AI Diagnosis Modal -->
+
+<div
+    class="modal fade"
+    id="diagnosisModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    AI Diagnosis
+
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <pre
+                    id="diagnosisContent"
+                    style="
+                        white-space: pre-wrap;
+                        font-family: inherit;
+                    ">
+                </pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', path='js/repair_jobs.js') }}"></script>
+
+{% endblock %}

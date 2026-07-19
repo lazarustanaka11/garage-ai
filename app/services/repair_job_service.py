@@ -8,6 +8,7 @@ from app.schemas.repair_job import (
     RepairJobCreate,
     RepairJobUpdate,
 )
+from app.ai.openai_service import OpenAIService
 
 
 class RepairJobService:
@@ -107,6 +108,42 @@ class RepairJobService:
             technician_notes=repair_job_data.technician_notes,
             ai_diagnosis=repair_job_data.ai_diagnosis,
             status=repair_job_data.status,
+        )
+
+    def generate_ai_diagnosis(
+        self,
+        repair_job_id: UUID,
+    ) -> RepairJob:
+        """Generate an AI diagnosis for a repair job."""
+
+        repair_job = self.repair_job_repository.get_by_id(
+            repair_job_id
+        )
+
+        if repair_job is None:
+            raise ValueError("Repair job not found.")
+
+        vehicle = repair_job.vehicle
+
+        ai_service = OpenAIService()
+
+        diagnosis = ai_service.diagnose(
+            make=vehicle.make,
+            model=vehicle.model,
+            year=vehicle.year,
+            mileage=repair_job.mileage,
+            title=repair_job.title,
+            description=repair_job.description,
+        )
+
+        return self.repair_job_repository.update(
+            repair_job,
+            title=repair_job.title,
+            description=repair_job.description,
+            mileage=repair_job.mileage,
+            technician_notes=repair_job.technician_notes,
+            ai_diagnosis=diagnosis,
+            status=repair_job.status,
         )
 
     def delete(
