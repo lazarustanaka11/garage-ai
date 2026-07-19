@@ -362,7 +362,7 @@ Screenshots will be added as the project evolves.
 
 # License
 
-This project is intended for educational, learning, and portfolio purposes.
+This project is intended for portfolio purposes.
 
 ---
 
