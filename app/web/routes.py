@@ -58,3 +58,13 @@ def repair_jobs(request: Request):
             "title": "Repair Jobs",
         },
     )
+
+@router.get("/register", response_class=HTMLResponse)
+def register(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="register.html",
+        context={
+            "title": "Register",
+        },
+    )

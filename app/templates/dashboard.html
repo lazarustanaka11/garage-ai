@@ -2,38 +2,101 @@
 
 {% block content %}
 
-<div class="mb-4">
+<div class="p-5 mb-5 bg-light rounded-4 shadow-sm">
 
-    <h1 class="display-5 fw-bold">
-        Garage AI Dashboard
-    </h1>
+    <div class="container-fluid py-2">
 
-    <p class="text-muted">
-        Manage customers, vehicles and repair jobs.
-    </p>
+        <h1 class="display-4 fw-bold">
+            🚗 Garage AI
+        </h1>
+
+        <p class="lead">
+
+            An AI-powered garage management platform built with
+            <strong>FastAPI</strong>,
+            <strong>PostgreSQL</strong>,
+            <strong>SQLAlchemy</strong>,
+            <strong>Bootstrap</strong>
+            and
+            <strong>OpenAI GPT-5</strong>.
+
+        </p>
+
+        <p class="text-muted">
+
+            Manage customers, vehicles and repair jobs while using AI to
+            generate intelligent repair diagnostics directly from the
+            Repair Jobs module.
+
+        </p>
+
+        <hr>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+
+            <a href="/customers"
+               class="btn btn-primary auth-only d-none">
+
+                👥 Customers
+
+            </a>
+
+            <a href="/vehicles"
+               class="btn btn-success auth-only d-none">
+
+                🚘 Vehicles
+
+            </a>
+
+            <a href="/repair-jobs"
+               class="btn btn-warning auth-only d-none">
+
+                🤖 AI Repair Jobs
+
+            </a>
+
+            <a href="/login"
+               id="dashboard-login"
+               class="btn btn-dark">
+
+                Login
+
+            </a>
+
+            <a href="/register"
+               id="dashboard-register"
+               class="btn btn-outline-dark">
+
+                Register
+
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 
 <div class="row g-4">
 
-    <div class="col-md-4">
+    <div class="col-lg-3">
 
-        <div class="card dashboard-card">
+        <div class="card h-100 shadow-sm">
 
             <div class="card-body">
 
-                <h5>👥 Customers</h5>
+                <h4>
 
-                <p>
-                    Manage customer information.
+                    👥 Customers
+
+                </h4>
+
+                <p class="text-muted">
+
+                    Register customers, manage contact information and keep
+                    all client records in one place.
+
                 </p>
-
-                <a href="/customers"
-                   class="btn btn-primary">
-
-                    Open
-
-                </a>
 
             </div>
 
@@ -41,24 +104,24 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-3">
 
-        <div class="card dashboard-card">
+        <div class="card h-100 shadow-sm">
 
             <div class="card-body">
 
-                <h5>🚘 Vehicles</h5>
+                <h4>
 
-                <p>
-                    View registered vehicles.
+                    🚘 Vehicles
+
+                </h4>
+
+                <p class="text-muted">
+
+                    Store vehicle information including make, model, VIN and
+                    registration details linked to each customer.
+
                 </p>
-
-                <a href="/vehicles"
-                   class="btn btn-success">
-
-                    Open
-
-                </a>
 
             </div>
 
@@ -66,24 +129,50 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-3">
 
-        <div class="card dashboard-card">
+        <div class="card h-100 shadow-sm">
 
             <div class="card-body">
 
-                <h5>🔧 Repair Jobs</h5>
+                <h4>
 
-                <p>
-                    Track active repairs.
+                    🔧 Repair Jobs
+
+                </h4>
+
+                <p class="text-muted">
+
+                    Create repair jobs, track progress and maintain a complete
+                    repair history for every vehicle.
+
                 </p>
 
-                <a href="/repair-jobs"
-                   class="btn btn-warning">
+            </div>
 
-                    Open
+        </div>
 
-                </a>
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="card h-100 border-primary shadow-sm">
+
+            <div class="card-body">
+
+                <h4>
+
+                    🤖 AI Diagnostics
+
+                </h4>
+
+                <p class="text-muted">
+
+                    Generate AI-powered repair diagnostics using OpenAI GPT-5.
+                    Diagnoses are automatically saved and can be viewed later
+                    from the Repair Jobs page.
+
+                </p>
 
             </div>
 
@@ -95,23 +184,100 @@
 
 <hr class="my-5">
 
-<div class="card">
+<div class="row">
 
-    <div class="card-body">
+    <div class="col-lg-6">
 
-        <h3>Welcome 👋</h3>
+        <div class="card shadow-sm h-100">
 
-        <p>
+            <div class="card-body">
 
-            Garage AI is an intelligent garage management system.
+                <h3>
 
-            Soon you'll be able to diagnose vehicle problems
-            using OpenAI directly from the Repair Jobs page.
+                    🚀 Features
 
-        </p>
+                </h3>
+
+                <ul class="mt-3">
+
+                    <li>JWT Authentication</li>
+
+                    <li>Customer Management</li>
+
+                    <li>Vehicle Management</li>
+
+                    <li>Repair Job Tracking</li>
+
+                    <li>OpenAI GPT-5 Diagnostics</li>
+
+                    <li>REST API with FastAPI</li>
+
+                    <li>PostgreSQL Database</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+
+                <h3>
+
+                    💡 About Garage AI
+
+                </h3>
+
+                <p>
+
+                    Garage AI is a modern full-stack application demonstrating
+                    clean backend architecture, JWT authentication,
+                    PostgreSQL persistence and AI integration using the
+                    OpenAI Responses API.
+
+                </p>
+
+                <p>
+
+                    The application is designed to help garages manage daily
+                    operations while providing intelligent repair assistance
+                    through GPT-powered diagnostics.
+
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
 </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const loggedIn =
+        localStorage.getItem("access_token") !== null;
+
+    if (loggedIn) {
+
+        document.getElementById("dashboard-login")
+            ?.classList.add("d-none");
+
+        document.getElementById("dashboard-register")
+            ?.classList.add("d-none");
+
+    }
+
+});
+
+</script>
 
 {% endblock %}

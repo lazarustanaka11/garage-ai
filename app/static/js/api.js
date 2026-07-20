@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000/api";
+const API_BASE = "/api";
 
 function getToken() {
     return localStorage.getItem("access_token");
@@ -6,13 +6,43 @@ function getToken() {
 
 function setToken(token) {
     localStorage.setItem("access_token", token);
+    updateNavbar();
 }
 
 function removeToken() {
     localStorage.removeItem("access_token");
+    updateNavbar();
+}
+
+function isLoggedIn() {
+    return getToken() !== null;
+}
+
+function logout() {
+    removeToken();
+    window.location.href = "/login";
+}
+
+function requireLogin() {
+
+    const protectedPages = [
+        "/customers",
+        "/vehicles",
+        "/repair-jobs"
+    ];
+
+    const current = window.location.pathname;
+
+    if (protectedPages.includes(current) && !isLoggedIn()) {
+
+        window.location.href = "/login";
+
+    }
+
 }
 
 async function apiRequest(endpoint, options = {}) {
+
     const headers = options.headers || {};
 
     headers["Content-Type"] = "application/json";
@@ -28,18 +58,32 @@ async function apiRequest(endpoint, options = {}) {
         headers,
     });
 
+    if (response.status === 401) {
+
+        logout();
+
+        return;
+
+    }
+
     if (!response.ok) {
+
         throw await response.json();
+
     }
 
     if (response.status === 204) {
+
         return null;
+
     }
 
     return await response.json();
+
 }
 
 const api = {
+
     get: (url) => apiRequest(url),
 
     post: (url, body) =>
@@ -58,4 +102,11 @@ const api = {
         apiRequest(url, {
             method: "DELETE",
         }),
+
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    requireLogin();
+
+});
