@@ -136,6 +136,18 @@ alembic upgrade head
 uvicorn app.main:app --reload
 ```
 
+## Tests
+
+Install the development dependencies and run the test suite:
+
+``` bash
+uv sync --group dev
+uv run pytest
+```
+
+The API tests use an isolated in-memory SQLite database and do not require a
+PostgreSQL server or OpenAI API key.
+
 ------------------------------------------------------------------------
 
 # Docker
